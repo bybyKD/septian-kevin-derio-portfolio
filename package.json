@@ -133,7 +133,7 @@
     "remark-rehype": "^11.1.2",
     "rimraf": "^6.0.1",
     "shadcn": "4.12.0",
-    "shiki": "4.0.1",
+    "shiki": "4.3.0",
     "strip-indent": "^4.0.0",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.13",
@@ -146,5 +146,11 @@
   "engines": {
     "node": ">=22.x",
     "pnpm": ">=9"
+  },
+  "pnpm": {
+    "overrides": {
+      "shiki": "4.3.0",
+      "@shikijs/*": "4.3.0"
+    }
   }
 }
