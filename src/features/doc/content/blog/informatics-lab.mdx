@@ -1,0 +1,50 @@
+---
+title: Universitas Gunadarma Informatics Lab
+description: Laboratory information system and CMS rebuilt with a small team for the thousands of students who use it every term — CodeIgniter 4, MySQL, RBAC, and a TipTap editor.
+image: /images/posts/informatics-lab.png
+createdAt: 2025-09-01
+updatedAt: 2025-09-01
+new: true
+---
+
+The Universitas Gunadarma Informatics Lab website is the online home of the campus informatics laboratory. It is a laboratory information system and content management system, and it matters because of scale: thousands of students rely on it every single term — for schedules, news, and the KOMPRES recruitment process.
+
+The site was rebuilt with a small team, replacing the previous system with something the lab can actually maintain and extend season after season.
+
+## Screenshot
+
+<FramedImage
+  src="/images/posts/informatics-lab.png"
+  alt="Universitas Gunadarma Informatics Lab website"
+/>
+
+## What it covers
+
+- **Campus schedules** — the lab's class and practical schedules, kept up to date each term
+- **News publishing** — a CMS flow for publishing announcements and lab news
+- **KOMPRES recruitment** — managing the student recruitment cycle for the lab's internal organization
+- **RBAC administration** — role-based access control so editors, admins, and lab staff each get exactly the permissions they need, with a TipTap-powered editor for content authoring
+
+## How it's built
+
+The stack is a classic full-stack PHP setup chosen for maintainability inside the lab: CodeIgniter 4 on MySQL, with the front end served server-side. The RBAC layer centralizes access control, and the TipTap editor gives the content team a modern writing experience embedded in the admin area.
+
+## Tech stack
+
+| Area      | Tech                             |
+| --------- | -------------------------------- |
+| Framework | CodeIgniter 4 (PHP)              |
+| Database  | MySQL                            |
+| Auth      | Role-based access control (RBAC) |
+| Editor    | TipTap                           |
+
+## Visit it
+
+The live site is at [iflab.gunadarma.ac.id](https://iflab.gunadarma.ac.id).
+
+<Callout title="Closed source by nature">
+  This is a university institutional system, so the codebase is not public — but
+  the engineering constraints are what make it interesting: production traffic,
+  real content workflows, and a team that must ship for a strict academic
+  calendar.
+</Callout>

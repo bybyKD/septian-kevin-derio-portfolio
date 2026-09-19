@@ -1,0 +1,61 @@
+---
+title: NetDoctor
+description: A macOS CLI for network diagnostics and bandwidth monitoring — Wi-Fi signal health, speed tests, and bandwidth hogs — distributed via Homebrew tap and Scoop bucket.
+createdAt: 2026-06-15
+updatedAt: 2026-06-15
+new: true
+---
+
+NetDoctor answers a very specific question: "Is my internet slow because of bad Wi-Fi, or is a background app eating all my bandwidth?" It is a macOS-only Python CLI that runs a quick diagnostic pass and tells you which problem you actually have.
+
+## What it does
+
+- **Wi-Fi signal health** — checks SSID, RSSI, and noise via `airport -I`, and warns when the signal is weak (below -70 dBm)
+- **Speed test** — measures ping, download, and upload through `speedtest-cli`
+- **Bandwidth hogs** — captures a one-second `nettop` sample and lists the top 10 processes by data usage
+
+## How it's built
+
+A single Python script, `network_diag.py`, one dependency (`speedtest-cli`), and a small `requirements.txt`. It uses macOS-specific tooling — the private Apple80211 framework through `airport`, and `nettop` for live process traffic — so it stays genuinely useful on macOS without pretending to be cross-platform.
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python network_diag.py
+```
+
+On the first run, the speed test may ask for network access permission — accept it, and the full report follows.
+
+## Distribution
+
+Beyond the plain CLI, NetDoctor is packaged for two package managers so installing it is a one-liner:
+
+```bash
+# Homebrew
+brew install <tap>/netdoctor
+
+# Scoop
+scoop install netdoctor
+```
+
+The [bybyKD/homebrew-tap](https://github.com/bybyKD/homebrew-tap) and [bybyKD/scoop-bucket](https://github.com/bybyKD/scoop-bucket) repos hold the formulas and manifests.
+
+## Tech stack
+
+| Area         | Tech                         |
+| ------------ | ---------------------------- |
+| Language     | Python 3                     |
+| Platform     | macOS (Apple80211, `nettop`) |
+| Dependencies | `speedtest-cli`              |
+| Packaging    | Homebrew tap, Scoop bucket   |
+
+## Repository
+
+The source is in [bybyKD/network_analysis](https://github.com/bybyKD/network_analysis).
+
+<Callout title="A terminal-first utility">
+  NetDoctor deliberately skips a GUI: when the network is broken, the fastest
+  thing you can reach is a terminal. One command, a plain-text report, and the
+  culprit is usually obvious.
+</Callout>

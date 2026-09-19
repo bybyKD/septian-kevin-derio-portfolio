@@ -1,0 +1,95 @@
+"use client"
+
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "motion/react"
+
+const VIEWBOX_WIDTH = 1410
+
+export function SiteFooterInteractiveLogotype() {
+  const shouldReduceMotion = useReducedMotion()
+
+  const gradientX1Raw = useMotionValue(0.5)
+  const gradientX1 = useSpring(
+    useTransform(gradientX1Raw, [0, 1], [0, VIEWBOX_WIDTH]),
+    {
+      stiffness: 150,
+      damping: 25,
+    }
+  )
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion) return
+
+    const containerRect = event.currentTarget.getBoundingClientRect()
+    gradientX1Raw.set(
+      (event.clientX - containerRect.left) / containerRect.width
+    )
+  }
+
+  const handleMouseLeave = () => {
+    if (shouldReduceMotion) return
+    gradientX1Raw.set(0.5)
+  }
+
+  return (
+    <div className="screen-line-bottom after:z-1 after:bg-foreground/15">
+      <div
+        className="overflow-hidden"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="flex w-full translate-y-[37.5%] items-center justify-center">
+          <svg
+            className="container size-full"
+            viewBox="0 0 1410 258"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M183 3L219 3L255 3L291 3L327 3L363 3L363 39L363 75L363 111L363 147L363 183L363 219L363 255L327 255L291 255L255 255L219 255L183 255L183 219L183 183L183 147L183 111L183 75L183 39L183 3ZM255 39L219 39L219 75L219 111L219 147L219 183L219 219L255 219L291 219L327 219L327 183L327 147L327 111L327 75L327 39L291 39L255 39ZM399 3L435 3L471 3L507 3L543 3L579 3L579 39L543 39L507 39L471 39L435 39L435 75L435 111L471 111L507 111L543 111L543 147L507 147L471 147L435 147L435 183L435 219L471 219L507 219L543 219L579 219L579 255L543 255L507 255L471 255L435 255L399 255L399 219L399 183L399 147L399 111L399 75L399 39L399 3ZM615 3L651 3L687 3L723 3L759 3L795 3L795 39L795 75L795 111L759 111L723 111L687 111L651 111L651 75L651 39L687 39L723 39L759 39L759 75L759 111L759 147L723 147L723 183L723 219L687 219L687 183L687 147L651 147L651 183L651 219L651 255L615 255L615 219L615 183L615 147L615 111L615 75L615 39L615 3ZM759 219L795 219L795 255L759 255L759 219ZM867 3L903 3L939 3L975 3L975 39L939 39L939 75L939 111L939 147L939 183L939 219L975 219L975 255L939 255L903 255L867 255L867 219L903 219L903 183L903 147L903 111L903 75L903 39L867 39L867 3ZM1047 3L1083 3L1119 3L1155 3L1191 3L1227 3L1227 39L1227 75L1227 111L1227 147L1227 183L1227 219L1227 255L1191 255L1155 255L1119 255L1083 255L1047 255L1047 219L1047 183L1047 147L1047 111L1047 75L1047 39L1047 3ZM1119 39L1083 39L1083 75L1083 111L1083 147L1083 183L1083 219L1119 219L1155 219L1191 219L1191 183L1191 147L1191 111L1191 75L1191 39L1155 39L1119 39Z"
+              fill="url(#paint0_linear_1145_73)"
+            />
+            <path
+              className="stroke-foreground/10"
+              d="M183 3L219 3L255 3L291 3L327 3L363 3L363 39L363 75L363 111L363 147L363 183L363 219L363 255L327 255L291 255L255 255L219 255L183 255L183 219L183 183L183 147L183 111L183 75L183 39L183 3ZM255 39L219 39L219 75L219 111L219 147L219 183L219 219L255 219L291 219L327 219L327 183L327 147L327 111L327 75L327 39L291 39L255 39ZM399 3L435 3L471 3L507 3L543 3L579 3L579 39L543 39L507 39L471 39L435 39L435 75L435 111L471 111L507 111L543 111L543 147L507 147L471 147L435 147L435 183L435 219L471 219L507 219L543 219L579 219L579 255L543 255L507 255L471 255L435 255L399 255L399 219L399 183L399 147L399 111L399 75L399 39L399 3ZM615 3L651 3L687 3L723 3L759 3L795 3L795 39L795 75L795 111L759 111L723 111L687 111L651 111L651 75L651 39L687 39L723 39L759 39L759 75L759 111L759 147L723 147L723 183L723 219L687 219L687 183L687 147L651 147L651 183L651 219L651 255L615 255L615 219L615 183L615 147L615 111L615 75L615 39L615 3ZM759 219L795 219L795 255L759 255L759 219ZM867 3L903 3L939 3L975 3L975 39L939 39L939 75L939 111L939 147L939 183L939 219L975 219L975 255L939 255L903 255L867 255L867 219L903 219L903 183L903 147L903 111L903 75L903 39L867 39L867 3ZM1047 3L1083 3L1119 3L1155 3L1191 3L1227 3L1227 39L1227 75L1227 111L1227 147L1227 183L1227 219L1227 255L1191 255L1155 255L1119 255L1083 255L1047 255L1047 219L1047 183L1047 147L1047 111L1047 75L1047 39L1047 3ZM1119 39L1083 39L1083 75L1083 111L1083 147L1083 183L1083 219L1119 219L1155 219L1191 219L1191 183L1191 147L1191 111L1191 75L1191 39L1155 39L1119 39Z"
+              strokeWidth="2"
+            />
+            <defs>
+              <motion.linearGradient
+                id="paint0_linear_1145_73"
+                x1={gradientX1}
+                y1="1"
+                x2="705"
+                y2="257"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop
+                  offset="0.625"
+                  stopColor="var(--foreground)"
+                  stopOpacity="0"
+                />
+                <stop offset="1" stopColor="var(--foreground)" />
+              </motion.linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/2 hidden h-px w-[50%] max-w-full -translate-x-1/2 dark:block"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0) 0%, rgba(228, 228, 231, 0.3) 50%, rgba(0, 0, 0, 0) 100%)",
+        }}
+        aria-hidden
+      />
+    </div>
+  )
+}

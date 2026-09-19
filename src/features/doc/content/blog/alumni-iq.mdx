@@ -1,0 +1,53 @@
+---
+title: AlumniIQ
+description: Alumni management system with search, filtering, and AI-powered assistance — React, TypeScript, Node/Express, Gemini, and PDF data import.
+image: /images/posts/alumni-iq-poster.jpg
+createdAt: 2026-01-20
+updatedAt: 2026-01-20
+new: true
+---
+
+AlumniIQ is an alumni management system built to make a large alumni directory actually useful. Instead of a static list, it pairs fast search and filtering with an AI-powered assistant that answers questions about the alumni data, plus a dashboard that turns raw records into insights.
+
+<VideoEmbed
+  src="/videos/alumni-iq-demo.mp4"
+  poster="/images/posts/alumni-iq-poster.jpg"
+/>
+
+## What it does
+
+- **Alumni directory** — search and filter the full alumni dataset
+- **AI-powered assistant** — ask questions about alumni in natural language; the Gemini-assisted flow falls back to smart search when no API key is configured
+- **Dashboard** — at-a-glance stats and analytics over the alumni population
+- **Insights** — deeper views into the data beyond the summary counts
+- **Data import** — extracts alumni records from directory PDFs so the system starts populated
+
+## Screenshots
+
+<FramedImage src="/images/posts/alumni-iq-01.jpg" alt="AlumniIQ landing view" />
+
+<FramedImage
+  src="/images/posts/alumni-iq-02.jpg"
+  alt="AlumniIQ search and filtering"
+/>
+
+<FramedImage src="/images/posts/alumni-iq-03.jpg" alt="AlumniIQ assistant" />
+
+## How it's built
+
+The app is a Vite + React frontend with a TypeScript codebase and a Node.js/Express server. The frontend is organized around focused pages — landing, login, register, dashboard, alumni directory, assistant, and insights — with dedicated stores for alumni data and authentication state.
+
+Import tooling lives in `scripts/`, with a family of PDF extraction scripts (`extract_pdf.ts`, `extract_pdf_robust.ts`, plus a test harness) that were iterated on until directory PDFs parsed reliably. Data is stored as JSON, keeping the system self-contained and easy to run anywhere.
+
+## Tech stack
+
+| Area     | Tech                                        |
+| -------- | ------------------------------------------- |
+| Frontend | React, TypeScript, Vite, Tailwind CSS       |
+| Backend  | Node.js, Express                            |
+| AI       | Gemini API (optional, with fallback search) |
+| Data     | JSON-based storage                          |
+
+## Try it
+
+The live deployment runs at [alumni-iq-deploy-der3.vercel.app](https://alumni-iq-deploy-der3.vercel.app/). The source lives in the [bybyKD/AlumniApp](https://github.com/bybyKD/AlumniApp) repository — the repo README notes that the app runs fine without an API key thanks to the built-in search fallback.

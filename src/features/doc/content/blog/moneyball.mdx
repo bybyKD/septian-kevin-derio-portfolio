@@ -1,0 +1,58 @@
+---
+title: Moneyball AI Scouting Platform
+description: An AI-native football recruitment and scouting intelligence platform that finds players whose performance, potential, and tactical fit outstrip their market value.
+createdAt: 2026-09-01
+updatedAt: 2026-09-01
+new: true
+---
+
+Moneyball AI Scouting Platform is an AI-native football recruitment and scouting intelligence system. It identifies players whose measurable performance, potential, and tactical suitability is greater than what their current market value suggests — a data-driven take on the analytics philosophy popularized by Moneyball.
+
+Built as a monorepo, it pairs a professional analytics terminal (Next.js 15) with a FastAPI backend that handles data, analytics, agents, and orchestration over a PostgreSQL 16 + pgvector foundation.
+
+## What it does
+
+- **Player analytics** — performance metrics, embedded player profiles, and valuation signals computed from match data
+- **Similarity search** — find comparable players using pgvector embeddings over measured attributes
+- **Market and scouting events** — track transfer market state and scouting activity in one timeline
+- **Player comparison** — side-by-side profiles across skills, value, and tactical fit
+- **Agent orchestration** — an API surface for scouting agents to query and reason over the data
+- **Real data** — seeds the entire StatsBomb open dataset, roughly 17 GB covering all competitions
+
+## How it's built
+
+The platform is organized as a single monorepo with clear module boundaries:
+
+```text
+apps/web         Next.js frontend (professional football analytics terminal)
+apps/api         FastAPI backend (data, analytics, agents, orchestration)
+packages/types   Shared TypeScript types and API contracts
+packages/ui      Shared UI primitives
+packages/config  Shared build and config (tsconfig, tailwind, eslint)
+data/            Seed data generator and Alembic migrations
+docs/            Architecture, data model, agents, analytics, data sources
+docker/          Docker assets
+tools/           Local dev tooling
+```
+
+The FastAPI backend exposes dedicated route groups for players, markets, scouting, comparison, similarity, analytics, agents, auth, and health. Data access layers map to async SQLAlchemy models for football, market, scouting, embeddings, and agent state, with Alembic handling migrations. PostgreSQL 16 backs everything with pgvector for embedding lookup and Redis 7 acts as cache and future Celery broker.
+
+## Tech stack
+
+| Layer       | Tech                                                              |
+| ----------- | ----------------------------------------------------------------- |
+| Web         | Next.js 15 (App Router), TypeScript (strict), Tailwind CSS        |
+| API         | Python 3.14, FastAPI, SQLAlchemy 2 (async), Alembic               |
+| DB          | PostgreSQL 16 + pgvector                                          |
+| Cache/queue | Redis 7                                                           |
+| Tests       | pytest (API and analytics), vitest (shared logic), Playwright e2e |
+
+<Callout title="Made with open data">
+  Training on ~17 GB of StatsBomb open data means the platform evaluates real
+  competitions, not synthetic stats — every scouting recommendation is grounded
+  in actual match events.
+</Callout>
+
+## Repository
+
+The source is open on GitHub: [bybyKD/moneyball](https://github.com/bybyKD/moneyball). The `Makefile` ships a smooth local workflow — spin up PostgreSQL + Redis with `make infra-up`, install dependencies with `make setup`, migrate, seed, and run `make api-dev` and `make web-dev` to get both servers running.

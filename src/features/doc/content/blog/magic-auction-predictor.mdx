@@ -1,0 +1,52 @@
+---
+title: Magic Auction Predictor
+description: A treasure database, data extraction tools, and an ML prediction tool for the Magic Auction mini-game in Mobile Legends Go Go, built with React 19 and TensorFlow.js.
+image: /images/posts/magic-auction-predictor.png
+createdAt: 2026-03-15
+updatedAt: 2026-03-15
+new: true
+---
+
+Magic Auction Predictor is a game tool for the Magic Auction mini-game in Mobile Legends: Go Go. It combines a treasure database, extraction tooling, and an in-browser machine learning model that estimates the expected value of any board state — so you can decide the best next pick instead of guessing.
+
+## Screenshot
+
+<FramedImage
+  src="/images/posts/magic-auction-predictor.png"
+  alt="Magic Auction Predictor board and prediction view"
+/>
+
+## What it does
+
+- **Smart Grid** — paint treasure shapes on an 8x8 board with color-coded blocks
+- **AI Prediction** — a TensorFlow.js model estimates the expected value (EV) of the current board state
+- **Live Suggestions** — the engine recommends the next move: a color, an item, or a random guess
+- **Quick Entry** — paste a board-notation string to load a position in one click
+- **Training Simulator** — run 1,000+ simulated games to train the model, watching progress in real time
+- **Save / Load** — export boards as JSON files and reload them later
+- **Item Database** — 306 treasures with name, price, type, shape, and color
+- **Bilingual** — full English and Indonesian (Bahasa Indonesia) documentation
+
+## How it's built
+
+The frontend is React 19 with TensorFlow.js doing all model training and inference directly in the browser. A data pipeline extracts treasure information into the database, and the training simulator feeds real gameplay rules into the model so predictions match how Magic Auction actually plays.
+
+## Tech stack
+
+| Area     | Tech                                      |
+| -------- | ----------------------------------------- |
+| Frontend | React 19                                  |
+| ML       | TensorFlow.js 4                           |
+| Language | JavaScript                                |
+| Data     | Treasure database + board-notation format |
+| Docs     | English and Bahasa Indonesia              |
+
+## Repository
+
+Source and documentation are on GitHub at [bybyKD/magic-chess-gogo-auction](https://github.com/bybyKD/magic-chess-gogo-auction), released under the MIT license with the repo tagged for game tools, Magic Auction, Mobile Legends, React, and TensorFlow.js.
+
+<Callout title="Why a predictor">
+  Magic Auction's board is transparent on the first open, but every subsequent
+  pick is a judgment call. Because the model is trained on hundreds of simulated
+  games, it can put a number on decisions that feel like pure luck.
+</Callout>

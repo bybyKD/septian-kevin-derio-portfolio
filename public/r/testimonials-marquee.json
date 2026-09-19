@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonials-marquee",
+  "title": "Testimonials Marquee",
+  "author": "Septian Kevin Derio <kevinderio27@gmail.com>",
+  "description": "Scrolling marquee to showcase user testimonials.",
+  "registryDependencies": [
+    "@kibo-ui/marquee",
+    "https://septian-kevin-derio-portfolio.vercel.app/r/testimonial.json"
+  ],
+  "files": [],
+  "docs": "https://septian-kevin-derio-portfolio.vercel.app/components/testimonials-marquee",
+  "categories": [
+    "marketing"
+  ],
+  "type": "registry:component"
+}

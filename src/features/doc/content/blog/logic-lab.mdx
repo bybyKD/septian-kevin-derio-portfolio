@@ -1,0 +1,53 @@
+---
+title: logic-lab
+description: An experimental TypeScript playground — a growing collection of interactive logic and tool prototypes built with React and Vite.
+image: /images/posts/logic-lab-poster.jpg
+createdAt: 2026-02-10
+updatedAt: 2026-02-10
+new: true
+---
+
+logic-lab is an experimental TypeScript playground: a growing collection of interactive logic and tool prototypes built with React and Vite. It started as a way to prototype how people could learn and reason about code — and it keeps growing whenever there is a new interaction pattern worth trying.
+
+<VideoEmbed
+  src="/videos/logic-lab-demo.mp4"
+  poster="/images/posts/logic-lab-poster.jpg"
+/>
+
+## What it is
+
+- **Interactive learning sections** — landing modules covering what logic is, debugging, code tracing, and a "four languages" comparison
+- **Code lab** — a code editor coupled with a code trace and an execution timeline, so every step a snippet takes is visible
+- **Challenges** — a challenge flow with an algorithm builder, choice cards, and scroll-to-challenge navigation
+- **Personal dashboard** — learning dashboard with module cards, a progress ring, skill bars, and stat cards
+- **Admin area** — a dashboard with a participant table and participant detail views to manage the lab
+
+## Screenshots
+
+<FramedImage src="/images/posts/logic-lab-01.jpg" alt="logic-lab landing" />
+
+<FramedImage src="/images/posts/logic-lab-02.jpg" alt="logic-lab challenge" />
+
+<FramedImage src="/images/posts/logic-lab-03.jpg" alt="logic-lab dashboard" />
+
+## How it's built
+
+The repo is a lean Vite + React + TypeScript app. Components are grouped by purpose rather than by page: `components/challenge/` holds the challenge flow, `components/code/` the editor and tracing tools, `components/landing/` the marketing-oriented sections, and `components/dashboard/` plus `components/admin/` the two main experiences. Two docs lay out the plan and product requirements (`docs/LOGIC_LAB_PLAN.md` and `docs/LOGIC_LAB_PRD.md`).
+
+## Tech stack
+
+| Area  | Tech                  |
+| ----- | --------------------- |
+| App   | React, TypeScript     |
+| Build | Vite                  |
+| Docs  | Markdown plan and PRD |
+
+## Try it
+
+The running prototype is hosted at [training-livid-gamma.vercel.app](https://training-livid-gamma.vercel.app) and the source is in [bybyKD/logic-lab](https://github.com/bybyKD/logic-lab).
+
+<Callout title="A work in progress">
+  logic-lab is deliberately open-ended. It is less a finished product and more a
+  space to try interactive, human-scale explanations of how code runs — new
+  experiments land here first.
+</Callout>
